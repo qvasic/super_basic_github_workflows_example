@@ -1,0 +1,16 @@
+name: External action
+on: [push, workflow_dispatch]
+jobs:
+  test:
+    name: Run external GitHub action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+          path: './main'
+      - uses: actions/checkout@v3
+        with:
+          repository: 'qvasic/super_basic_github_actions_example'
+          path: './external'
+      - uses: ./external
